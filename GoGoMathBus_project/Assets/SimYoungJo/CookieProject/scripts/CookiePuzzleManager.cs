@@ -12,7 +12,7 @@ public class CookiePuzzleManager : MonoBehaviour
     public enum LevelState //레벨 상태
     {
         First, Second, Third, Fourth
-    }    
+    }
     //게임, 레벨 상태 초기화
     public PuzzleState puzzleState = PuzzleState.Standby;
     public LevelState levelState = LevelState.First;
@@ -33,8 +33,7 @@ public class CookiePuzzleManager : MonoBehaviour
     public Text rectSingleText; //사각형 한자리수 출력
     public Text circDoubleText; //원형 두자리수 출력
     public Text circSingleText; //원형 한자리수 출력
-    public Text totText; //합산 숫자 출력
-    public Text resultText;//결과 문자열 출력
+    public Text resultText; //합산 숫자 출력
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +44,7 @@ public class CookiePuzzleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
     void RandomNumber()
     {
@@ -56,7 +55,7 @@ public class CookiePuzzleManager : MonoBehaviour
             resultDigit = doubleDigit * 10 + singleDigit;
             circDoubleText.text = (doubleDigit * 10).ToString();
             circSingleText.text = singleDigit.ToString();
-            totText.text = resultDigit.ToString();
+            resultText.text = resultDigit.ToString();
         } else
         {
             tripleDigit = Random.Range(1, 9);
@@ -66,12 +65,11 @@ public class CookiePuzzleManager : MonoBehaviour
             rectTripleText.text = tripleDigit.ToString();
             rectDoubleText.text = doubleDigit.ToString();
             rectSingleText.text = singleDigit.ToString();
-            totText.text = resultDigit.ToString();
+            resultText.text = resultDigit.ToString();
         }
         
 
     }
-    
     void NextLevel()
     {
         switch (levelState)

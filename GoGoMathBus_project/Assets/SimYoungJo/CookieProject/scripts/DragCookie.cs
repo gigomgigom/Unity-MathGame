@@ -16,10 +16,6 @@ public class DragCookie : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public Vector2 oringPos; //쿠키 초기화 위치
     public float detectRange; //감지 범위
     public GameObject outline; //틀(틀니딱딱할때 틀 아님 ㅎ)
-
-    public float distance;
-    public Transform target;
-    public float nearDist;//근사값
     // Start is called before the first frame update
     void Start()
     {
@@ -64,11 +60,7 @@ public class DragCookie : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
-        distance = Vector3.Distance(transform.position, target.position);
-        if(distance <= nearDist)
-        {
-            transform.position = target.position;
-        }
+
     }
     //드래그 시작
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
@@ -84,10 +76,5 @@ public class DragCookie : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    }
-    public void CookieReset()
-    {
-        GetComponent<RectTransform>().position = oringPos;
-        cookieState = CookieState.Out;
     }
 }
