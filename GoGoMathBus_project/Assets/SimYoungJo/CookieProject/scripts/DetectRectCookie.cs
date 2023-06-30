@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DetectCookie : MonoBehaviour
+public class DetectRectCookie : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public float detectRange;
-    public List<GameObject> cookieList = new List<GameObject>();
-=======
     public CookiePuzzleManager PuzzleManager;
-    public DragCookie circLCookie;
-    public DragCookie circRCookie;
+    public DragRectCookie rect1Cookie;
+    public DragRectCookie rect2Cookie;
+    public DragRectCookie rect3Cookie;
     public float detectRange;
-    public List<GameObject> circCookieList = new List<GameObject>();
+    public List<GameObject> rectCookieList = new List<GameObject>();
     public Text resultText;
->>>>>>> Stashed changes
-    //기즈모를 그리는 함수
     public void OnDrawGizmos()
     {
         //와이어 스피어를 그린다(그릴 위치, 반지름)
         Gizmos.DrawWireSphere(transform.position, detectRange);
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,26 +27,19 @@ public class DetectCookie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-        
-=======
-        if (circCookieList.Count == 2)
+        if (rectCookieList.Count == 3)
         {
             ResultText();
-            circCookieList.Clear();
+            rectCookieList.Clear();
         }
->>>>>>> Stashed changes
     }
-
     public void AddCookie(GameObject cookie)
     {
-        circCookieList.Add(cookie);
+        rectCookieList.Add(cookie);
     }
-<<<<<<< Updated upstream
-=======
     public void ResultText()
     {
-        resultText.gameObject.SetActive(true);  
+        resultText.gameObject.SetActive(true);
         resultText.text = "성공!";
         StartCoroutine(cookieReset());
         PuzzleManager.NextLevel();
@@ -57,11 +47,10 @@ public class DetectCookie : MonoBehaviour
     IEnumerator cookieReset()
     {
         yield return new WaitForSeconds(2.0f);
-        circLCookie.CookieReset();
-        circRCookie.CookieReset();
+        rect1Cookie.CookieReset();
+        rect2Cookie.CookieReset();
         resultText.text = "";
-        circCookieList.Clear();
+        rectCookieList.Clear();
         resultText.gameObject.SetActive(false);
     }
->>>>>>> Stashed changes
 }

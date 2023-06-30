@@ -37,14 +37,27 @@ public class CookiePuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NextLevel();
         puzzleState = PuzzleState.Play;
+        SetLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         
+=======
+        if (puzzleState == PuzzleState.Standby)
+        {
+            puzzleState = PuzzleState.Play;
+            StartCoroutine(NextStage());
+        }
+    }
+    IEnumerator NextStage()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SetLevel();
+>>>>>>> Stashed changes
     }
     void RandomNumber()
     {
@@ -70,7 +83,12 @@ public class CookiePuzzleManager : MonoBehaviour
         
 
     }
+<<<<<<< Updated upstream
     void NextLevel()
+=======
+    
+    void SetLevel()
+>>>>>>> Stashed changes
     {
         switch (levelState)
         {
@@ -103,5 +121,24 @@ public class CookiePuzzleManager : MonoBehaviour
                 outlineParent[1].gameObject.SetActive(true);
                 break;
         }
+    }
+    public void NextLevel()
+    {
+        switch (levelState)
+        {
+            case LevelState.First:
+                levelState = LevelState.Second;
+                break;
+            case LevelState.Second:
+                levelState = LevelState.Third;
+                break;
+            case LevelState.Third:
+                levelState = LevelState.Fourth;
+                break;
+            case LevelState.Fourth:
+                levelState = LevelState.First;
+                break;
+        }
+        puzzleState = PuzzleState.Standby;
     }
 }
